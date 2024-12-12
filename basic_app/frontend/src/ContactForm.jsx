@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 const ContactForm = ({existingContact = {}, updateCallback}) => {
+    const API_URL = import.meta.env.REACT_APP_API_URL;
     const [firstName, setFirstName] = useState(existingContact.firstName || "")
     const [lastName, setLastName] = useState(existingContact.lastName || "")
     const [email, setEmail] = useState(existingContact.email || "")
@@ -15,7 +16,7 @@ const ContactForm = ({existingContact = {}, updateCallback}) => {
             lastName,
             email
         }
-        const url = "http://127.0.0.1:5000/" + (updating ? `update_contact/${existingContact.id}` : "create_contact")
+        const url = "/api/" + (updating ? `update_contact/${existingContact.id}` : "create_contact")
         const options = {
             method: updating ? "PUT" : "POST",
             headers: {

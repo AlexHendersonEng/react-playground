@@ -3,8 +3,8 @@ import './App.css'
 import ContactList from './ContactList'
 import ContactForm from './ContactForm'
 
-
 function App() {
+  const API_URL = import.meta.env.REACT_APP_API_URL;
   const [contacts, setContacts] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [currentContact, setCurrentContact] = useState({})
@@ -14,7 +14,7 @@ function App() {
   }, [])
 
   const fetchContacts = async () => {
-    const response = await fetch("http://127.0.0.1:5000/contacts")
+    const response = await fetch("/api/contacts")
     const data = await response.json()
     setContacts(data.contacts)
   }

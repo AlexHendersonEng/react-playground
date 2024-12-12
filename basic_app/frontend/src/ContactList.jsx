@@ -1,12 +1,14 @@
 import React from "react"
 
 const ContactList = ({contacts, updateContact, updateCallback}) => {
+    const API_URL = import.meta.env.REACT_APP_API_URL;
+
     const onDelete = async (id) => {
         try {
             const options = {
                 method: "DELETE"
             }
-            const response = await fetch(`http://127.0.0.1:5000/delete_contact/${id}`, options)
+            const response = await fetch(`/api/delete_contact/${id}`, options)
             if (response.status === 200) {
                 updateCallback()
             } else {
