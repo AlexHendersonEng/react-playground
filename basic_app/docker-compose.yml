@@ -1,0 +1,25 @@
+services:
+  # Flask Backend API Service
+  backend:
+    build:
+      context: ./backend  # Flask app is in the 'backend' directory
+    image: backend-image  # Name the image
+    container_name: backend-container
+    networks:
+      - app-network
+
+  # React Frontend Service
+  frontend:
+    build:
+      context: ./frontend  # React app is in the 'frontend' directory
+    image: frontend-image  # Name the image
+    container_name: frontend-container
+    ports:
+      - "3000:3000"  # Publish port 3000 of the container to port 3000 on the host
+    networks:
+      - app-network
+
+# Define the network for both services
+networks:
+  app-network:
+    driver: bridge
